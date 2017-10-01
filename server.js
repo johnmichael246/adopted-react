@@ -1,16 +1,18 @@
+var express=require('express');
+var path = require('path');
 var methodOverride=require('method-override');
-var logger = require('morgan');
+var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 
-require('dotenv');
-require('config/database');
+require('dotenv').config();
+require('./config/database');
 var app = express();
 
-app.use(logger('dev'));
+app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname,'build')));
 app.use(bodyParser.json());
-app.use(require('./config/passport'));
+// app.use(require('./config/passport'));
 
 //catch all route for routes
 app.get('/*', (req,res)=> {

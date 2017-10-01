@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
-var Promise = global.Promise;
+mongoose.Promise = global.Promise;
 
-mongoose.connect =(process.env.DTABASE_URL);
+mongoose.connect(process.env.DATABASE_URL);
 
 mongoose.connection.once('open', ()=> {
-    console.log(`Mongo DB ${mongoose.connection.name}running at host${host}:port${port}`)
+    console.log(`Mongo DB ${mongoose.connection.name}running at host${mongoose.connection.host}:port${mongoose.connection.port}`)
 })
 
 mongoose.connection.once('error',(err)=> {
