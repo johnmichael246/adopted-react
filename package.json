@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "auth0-js": "^8.10.1",
+    "auth0-lock": "^10.22.0",
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
     "express": "^4.16.1",
