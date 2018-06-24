@@ -17,7 +17,7 @@ class Callback extends React.Component {
         }
         return (
             <div style={style}>
-                <img src={loading}/>
+                <img src={loading} alt='loading'/>
             </div>
         )
     }

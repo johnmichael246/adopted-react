@@ -22,6 +22,24 @@
   font-size: large;
 }
 
+.sign-up-title {
+  font-size:4rem;
+  padding-top:15px;
+  padding-bottom:0px;
+  margin-bottom:0px;
+  font-family: 'Space Mono', monospace;
+}
+.form-control {
+  -webkit-text-fill-color: black !important;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+.form-border {
+  border: 2px solid black;
+  background-color:red
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
