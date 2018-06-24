@@ -29,9 +29,9 @@ export default class Pet extends Entity {
     get photos() {
         return this.lookup('photos',_ => {
             const photos = [...this.data.media.photos.photo]
-            return photos.map(record => new Photo(record).filter(photo => {
+            return photos.map(record => new Photo(record)).filter(photo => {
                 return photo.size === 'x'
-            }))
+            })
         })
     }
 
@@ -61,7 +61,6 @@ export default class Pet extends Entity {
         info.city = this.data.city.$t || 'N/A'
         info.state = this.data.state.$t || 'N/A'
         info.zipcode = this.data.zip.$t || 'N/A'
-
         return info
     }
 
@@ -78,7 +77,6 @@ export default class Pet extends Entity {
             } else {
                 breeds = [...this.data.breeds.breed]
             }
-            console.log('breeds===',breeds)
             return breeds.map(b => new Breed(b))
         })
     }

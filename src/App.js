@@ -51,7 +51,7 @@ class App extends Component {
     })
     response = await response.json()
     let pets = response.pets.pet.map(data => new Pet(data))
-    pets.forEach(p => console.log(p.breeds))
+    pets.forEach(p => console.log(p.photos))
     this.setState({
       pets,
       lastOffset: response.lastOffset.$t
