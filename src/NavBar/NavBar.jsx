@@ -15,7 +15,7 @@ const NavBar = (props) => (
     </Navbar.Header>
     <Navbar.Collapse>
       <Nav>
-        <NavItem eventKey={1} href='/home'>Home</NavItem>
+        <NavItem eventKey={1} href='/'>Home</NavItem>
         {props.isAuthenticated && <NavItem eventKey={1}  onClick={() => props.logout()} >Logout</NavItem>}
         {props.isAuthenticated && <NavItem eventKey={3} href='/profile'>Profile</NavItem>}
       </Nav>

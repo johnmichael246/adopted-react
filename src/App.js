@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import NavBar from './NavBar/NavBar'
 import Home from './Home/Home'
-import { Switch, Route, Link } from 'react-router-dom'
+import { Switch, Route, Link, Redirect } from 'react-router-dom'
 import Auth from './Auth/Auth'
 import Callback from './Callback/Callback'
 import Profile from './Profile/Profile'
@@ -51,11 +51,12 @@ class App extends Component {
     })
     response = await response.json()
     let pets = response.pets.pet.map(data => new Pet(data))
-    pets.forEach(p => console.log(p.photos))
+    this.props.history.push('/search')
     this.setState({
       pets,
       lastOffset: response.lastOffset.$t
-    }, () => console.log(this.state))
+    })
+    return 
   }
 
   goTo = (route) => {
@@ -102,15 +103,14 @@ class App extends Component {
           <Route exact path= '/' render={(props) => (
             <Home
             auth={auth}
-            handlePetfinderRequest={this.handlePetfinderRequest}/>
-          )} />
-          <Route path= '/home' render={(props) => (
-            <Home
-            auth={auth}/>
+            handlePetfinderRequest={this.handlePetfinderRequest}
+            {...props}/>
           )} />
           <Route path= '/search' render={(props) => (
             <SearchResults
-            auth={auth}/>
+            auth={auth}
+            pets={this.state.pets}
+            {...props}/>
           )} />
           <ProtectedRoute path='/profile' component={Profile} user={user} auth={auth}/>
           <Route path="/callback" render={(props) => {
