@@ -23,7 +23,14 @@ app.use('/api/petfinder', require('./routes/api/petfinder'))
 app.get('/*', (req,res)=> {
     res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
-const port = process.env.PORT || 3001
+
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+var port = process.env.PORT || 3001
 
 app.listen(port, ()=> {
     console.log(`Express app running on port ${port}`)
