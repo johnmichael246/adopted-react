@@ -1,27 +1,24 @@
-var express = require('express');
-var path = require('path');
-var methodOverride=require('method-override');
-var morgan = require('morgan');
-var bodyParser = require('body-parser');
-var passport = require('passport');
+const express = require('express');
+const path = require('path');
+const methodOverride=require('method-override');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const passport = require('passport');
+let favicon = require('serve-favicon')
 
 require('dotenv').config();
 require('./config/database');
-var app = express();
+const app = express();
 
 app.use(morgan('dev'));
-app.use(express.static(path.join(__dirname,'build')));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-// app.use(cookieParser());
-// app.use(session({
-//     seret:'SaveALife!',
-//     resave:false,
-//     saveUnitialized:true
-// }))
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(favicon(path.join(__dirname, 'public', 'PETLOGO.ico')))
+app.use(express.static(path.join(__dirname,'build')))
 
+app.use(bodyParser.json());
+
+
+app.use('/api/users', require('./routes/api/users'))
+app.use('/api/petfinder', require('./routes/api/petfinder'))
 //catch all route for routes
 app.get('/*', (req,res)=> {
     res.sendFile(path.join(__dirname, 'build', 'index.html'))

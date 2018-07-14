@@ -14,12 +14,39 @@
   color: white;
 }
 
+.content {
+  padding: 10px;
+}
+
 .App-title {
   font-size: 1.5em;
 }
 
 .App-intro {
   font-size: large;
+}
+
+.sign-up-title {
+  font-size:4rem;
+  padding-top:15px;
+  padding-bottom:0px;
+  margin-bottom:0px;
+  font-family: 'Space Mono', monospace;
+}
+.form-control {
+  -webkit-text-fill-color: black !important;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+.form-border {
+  border: 2px solid black;
+  background-color:red
+}
+
+.image-resize {
+  max-width: 150px;
+  max-height: 200px;
 }
 
 @keyframes App-logo-spin {

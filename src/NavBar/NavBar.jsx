@@ -1,62 +1,26 @@
 import React from 'react';
 import {
     Navbar,
-    Button
-} from 'react-bootstrap';
+    Nav,
+    NavItem
+} from 'react-bootstrap'
 
-class NavBar extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-  goTo(route) {
-    this.props.history.replace(`/${route}`)
-  }
-  login() {
-    this.props.auth.login();
-  }
-  logout() {
-    this.props.auth.logout();
-  }
-  render() {
-    const {isAuthenticated}= this.props.auth
-    return (
-      <div>
-        <Navbar fluid>
-          <Navbar.Header>
-            <Navbar.Brand>
-              <a href='#'>Auth0 - React</a>
-            </Navbar.Brand>
-            <Button
-            bsStyle='primary'
-            className='btn-margin'
-            onClick={this.goTo.bind(this,'home')}>
-              Home
-            </Button>
-            {
-              !isAuthenticated() && (
-                <Button
-                bsStyle='primary'
-                className='btn-margin'
-                onClick={this.logout.bind(this)}>
-                  Log In
-                </Button>
-              )
-            }
-            {
-              isAuthenticated() && (
-                <Button
-                bsStyle='primary'
-                className='btn-margin'
-                onClick={this.logout.bind(this)}>
-                  Log Out
-                </Button>
-              )
-            }
-          </Navbar.Header>
-        </Navbar>
-      </div> 
-    );
-  }
-}
+const NavBar = (props) => (
+  <Navbar fluid>
+    <Navbar.Header>
+      <Navbar.Brand>
+        <a href='/'>PetFinder</a>
+      </Navbar.Brand>
+      <Navbar.Toggle/>
+    </Navbar.Header>
+    <Navbar.Collapse>
+      <Nav>
+        <NavItem eventKey={1} href='/'>Home</NavItem>
+        {props.isAuthenticated && <NavItem eventKey={1}  onClick={() => props.logout()} >Logout</NavItem>}
+        {props.isAuthenticated && <NavItem eventKey={3} href='/profile'>Profile</NavItem>}
+      </Nav>
+    </Navbar.Collapse>
+  </Navbar>
+)
 
 export default NavBar
