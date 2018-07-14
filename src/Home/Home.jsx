@@ -50,6 +50,7 @@ class Home extends Component {
             From the comfort of their personal computers, pet lovers can search for a pet that best matches their needs. They can then reference a shelter’s web page and discover what services it offers. Petfinder also includes discussion forums, a pet-care resource directory and a library of free pet-care articles to help keep pets in their homes.
             </p>
             <SearchForm
+            inline={false}
             handlePetfinderRequest={this.props.handlePetfinderRequest}/>
           </Col>            
           </Row>

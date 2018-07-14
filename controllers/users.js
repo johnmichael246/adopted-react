@@ -29,6 +29,7 @@ function findPets(req, res) {
         })
     } catch (e) {
         console.log(e)
+        throw new Error(e)
     }
 }
 

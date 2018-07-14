@@ -8,7 +8,10 @@ export default class Pet extends Entity {
     }
 
     get name() {
-        return this.data.name.$t
+        let name = this.data.name.$t.toLowerCase()
+        name = name.replace(/\s.[^-]*$/, '')
+        return name
+        // return name.split(' ').map(n => n.charAt(0).toUpperCase() + n.substring(1))
     }
 
     get gender() {
@@ -52,15 +55,16 @@ export default class Pet extends Entity {
     }
 
     get options() {
-        return this.data.options
+        return this.data.options.map(item => item.$t)
     }
 
     get locationInfo() {
+        const { contact } = this.data
         let info = {}
-        info.address = this.data.address.$t || 'N/A'
-        info.city = this.data.city.$t || 'N/A'
-        info.state = this.data.state.$t || 'N/A'
-        info.zipcode = this.data.zip.$t || 'N/A'
+        info.address = contact.address1.$t || 'N/A'
+        info.city = contact.city.$t || 'N/A'
+        info.state = contact.state.$t || 'N/A'
+        info.zipcode = contact.zip.$t || 'N/A'
         return info
     }
 

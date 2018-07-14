@@ -4,7 +4,8 @@ import {
     FormControl,
     ControlLabel,
     HelpBlock,
-    Button
+    Button,
+    Form
 } from 'react-bootstrap'
 
 function FieldGroup({ id, label, help, ...props }) {
@@ -54,7 +55,9 @@ export default class SearchForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <Form
+      onSubmit={this.handleSubmit}
+      inline={this.props.inline}>
         <FormGroup controlId="species_select">
           <ControlLabel>Animal Select</ControlLabel>
           <FormControl
@@ -108,7 +111,7 @@ export default class SearchForm extends React.Component {
             onChange={(e) => this.handleChange(e, 'zip')}
           />
           <FormControl.Feedback />
-          <HelpBlock>Zipcode must be 5 digits long</HelpBlock>
+
         </FormGroup>
         <Button
         type='submit'
@@ -117,7 +120,7 @@ export default class SearchForm extends React.Component {
         disabled={this.state.zip.length !== 5}>
           Find My Pet
         </Button>
-      </form>
+      </Form>
     )
   }  
 }

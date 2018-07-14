@@ -25,7 +25,7 @@ class App extends Component {
     super()
     this.state = {
       user: null,
-      pets: null,
+      pets: [],
       lastOffset: '0'
     }
   }
@@ -63,7 +63,7 @@ class App extends Component {
     this.props.history.replace(`/${route}`)
   }
 
-  login() {
+  login = () => {
     auth.login()
   }
 
@@ -75,7 +75,6 @@ class App extends Component {
   getProfile = (user) => {
     if (!user) {
       const accessToken = localStorage.getItem('access_token');
-
       if (!accessToken) {
         throw new Error('Access Token must exist to fetch profile');
       }
@@ -99,26 +98,28 @@ class App extends Component {
         logout={this.logout}
         goTo={this.goTo}
         isAuthenticated={isAuthenticated}/>
-        <Switch>
-          <Route exact path= '/' render={(props) => (
-            <Home
-            auth={auth}
-            handlePetfinderRequest={this.handlePetfinderRequest}
-            {...props}/>
-          )} />
-          <Route path= '/search' render={(props) => (
-            <SearchResults
-            auth={auth}
-            pets={this.state.pets}
-            {...props}/>
-          )} />
-          <ProtectedRoute path='/profile' component={Profile} user={user} auth={auth}/>
-          <Route path="/callback" render={(props) => {
-            handleAuthentication(props)
-            return <Callback auth={auth}{...props} /> 
-          }}/>
-          <Route render={() => (<div> Sorry, that page doent exist </div>)}/>
-        </Switch>
+        <div className='content'>
+          <Switch>
+            <Route exact path= '/' render={(props) => (
+              <Home
+              auth={auth}
+              handlePetfinderRequest={this.handlePetfinderRequest}
+              {...props}/>
+            )} />
+            <Route path= '/search' render={(props) => (
+              <SearchResults
+              auth={auth}
+              pets={this.state.pets}
+              {...props}/>
+            )} />
+            <ProtectedRoute path='/profile' component={Profile} user={user} auth={auth}/>
+            <Route path="/callback" render={(props) => {
+              handleAuthentication(props)
+              return <Callback auth={auth}{...props} /> 
+            }}/>
+            <Route render={() => (<div> Sorry, that page doent exist </div>)}/>
+          </Switch>
+        </div>
       </div>
     );
   }
